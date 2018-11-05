@@ -14,6 +14,9 @@ import {
 import {
   getFilters,
 } from '../../../ui/selectors';
+import {
+  updateFilterBy,
+} from '../../../ui/ducks';
 
 const Wrapper = styled('section')``;
 const ContentWrapper = styled('div')``;
@@ -65,7 +68,7 @@ class Header extends React.Component {
   // values: array[{label, value}] -- current value(s) of select
   // event: {action, option: {label, value}} - Option added/removed
   handleFilterChange = (values, event) => {
-    console.log('selected', values, event);
+    this.props.dispatch(updateFilterBy(values));
   }
 
   render() {
