@@ -26,7 +26,12 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-emotion": "^9.2.12",
-    "react-select": "^2.1.1"
+    "react-redux": "^5.1.0",
+    "react-select": "^2.1.1",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2",
+    "redux-saga-test-plan": "^3.7.0",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

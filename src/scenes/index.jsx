@@ -1,15 +1,36 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
-import AppBar from '../AppBar';
-import Header from '../Header';
-import DataTable from '../DataTable';
+import store from '../boot/store';
+import { startFetchCycle, stopFetchCycle } from '../consultants/ducks';
 
-const App = ({ data = []}) => (
-  <React.Fragment>
-    <AppBar />
-    <Header />
-    <DataTable rowData={data} />
-  </React.Fragment>
-);
+import AppBar from './components/AppBar';
+import Header from './components/Header';
+import DataTable from './components/DataTable';
+
+class App extends React.Component{
+
+  componentDidMount() {
+    // Makes initial request
+    store.dispatch(startFetchCycle());
+  }
+
+  componentWillUnmount() {
+    store.dispatch(stopFetchCycle());
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <React.Fragment>
+          <AppBar />
+          <Header />
+          <DataTable />
+        </React.Fragment>
+      </Provider>
+    );
+  }
+}
+
 
 export default App;
