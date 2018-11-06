@@ -17,6 +17,7 @@ import {
 } from '../../../ui/selectors';
 import {
   updateFilterBy,
+  updateSortBy,
 } from '../../../ui/ducks';
 
 const Wrapper = styled('section')``;
@@ -61,14 +62,25 @@ const MultiValueLabel = ({ children, ...props }) => {
 
 const sortOptions = [
   { label: 'Team', value: 'team' },
-  { label: 'Status', value: 'status' },
+  { label: 'Status', value: '_statusEnum' },
 ]
 
 class Header extends React.Component {
 
   // values: {label, value}[] -- current value(s) of select
   handleFilterChange = (values) => {
+    // values will be an empty array when cleared
     this.props.dispatch(updateFilterBy(values));
+  }
+
+  handleSortChange = (values, { action }) => {
+    if (action === 'clear') {
+      this.props.dispatch(updateSortBy(null));
+
+      return;
+    }
+
+    this.props.dispatch(updateSortBy(values));
   }
 
   render() {
@@ -123,6 +135,7 @@ class Header extends React.Component {
                 isClearable
                 className="w-1/2 ml-auto"
                 tabIndex="1"
+                onChange={this.handleSortChange}
                 styles={{
                   control: (propvided) => ({
                     ...propvided,
