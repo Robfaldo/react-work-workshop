@@ -4,22 +4,22 @@ import styled from 'react-emotion';
 import Select, { components } from 'react-select';
 import { connect } from 'react-redux';
 
-import mockOptionData from './mock-data';
-import SummaryIconBlock from './SummaryBlock';
-import { generateOptionEntry } from './utils';
 import {
   getNumberOfConsultantsInUnavailableState,
   getNumberOfConsultantsInAvailableState,
   getNumberOfConsultantsInBusyState,
-} from '../../../consultants/selectors';
+} from 'consultants/selectors';
 import {
   getFilters,
   makeGetFilterBy,
-} from '../../../ui/selectors';
+} from 'ui/selectors';
 import {
   updateFilterBy,
   updateSortBy,
-} from '../../../ui/ducks';
+} from 'ui/ducks';
+import mockOptionData from './mock-data';
+import SummaryIconBlock from './SummaryBlock';
+import { generateOptionEntry } from './utils';
 
 const Wrapper = styled('section')``;
 const ContentWrapper = styled('div')``;
