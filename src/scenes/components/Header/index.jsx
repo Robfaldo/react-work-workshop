@@ -1,3 +1,4 @@
+/* eslint no-nested-ternary: off */
 import React from 'react';
 import styled from 'react-emotion';
 import Select, { components } from 'react-select';
@@ -36,16 +37,20 @@ const formatGroupLabel = data => (
   </div>
 );
 
-const MultiValueLabel = ({ children, ...props }) => {
-  if( ! ('data' in props) || ! ('value' in props.data)) {
-    return <components.MultiValueLabel {...props} children={children} />;
+const MultiValueLabel = ({ children, data, ...props }) => {
+  if (! data || ! ('value' in data)) {
+    return (
+      <components.MultiValueLabel {...props}>
+        {children}
+      </components.MultiValueLabel>
+    );
   }
 
-  const isTeamLabel = /team@/i.test(props.data.value);
-  const isSourceLabel = /source@/i.test(props.data.value);
-  const isFunctionLabel = /function@/i.test(props.data.value);
+  const isTeamLabel = /team@/i.test(data.value);
+  const isSourceLabel = /source@/i.test(data.value);
+  const isFunctionLabel = /function@/i.test(data.value);
 
-  let prefix = isTeamLabel
+  const prefix = isTeamLabel
     ? 'Team: '
     : isSourceLabel
       ? 'Source: '
@@ -54,8 +59,9 @@ const MultiValueLabel = ({ children, ...props }) => {
         : '';
 
   return (
-    <components.MultiValueLabel {...props}>
-     {prefix}{children}
+    <components.MultiValueLabel {...props} data={data}>
+      {prefix}
+      {children}
     </components.MultiValueLabel>
   );
 };
@@ -63,24 +69,27 @@ const MultiValueLabel = ({ children, ...props }) => {
 const sortOptions = [
   { label: 'Team', value: 'team' },
   { label: 'Status', value: '_statusEnum' },
-]
+];
 
 class Header extends React.Component {
-
   // values: {label, value}[] -- current value(s) of select
   handleFilterChange = (values) => {
+    const { dispatch } = this.props;
+
     // values will be an empty array when cleared
-    this.props.dispatch(updateFilterBy(values));
+    dispatch(updateFilterBy(values));
   }
 
   handleSortChange = (values, { action }) => {
+    const { dispatch } = this.props;
+
     if (action === 'clear') {
-      this.props.dispatch(updateSortBy(null));
+      dispatch(updateSortBy(null));
 
       return;
     }
 
-    this.props.dispatch(updateSortBy(values));
+    dispatch(updateSortBy(values));
   }
 
   render() {
@@ -122,7 +131,7 @@ class Header extends React.Component {
                 options={groupOptions}
                 isMulti
                 value={selectedValues}
-                theme={(theme) => ({
+                theme={theme => ({
                   ...theme,
                   borderRadius: 0,
                 })}
@@ -135,16 +144,15 @@ class Header extends React.Component {
                 isSearchable={false}
                 isClearable
                 className="w-1/2 ml-auto"
-                tabIndex="1"
                 onChange={this.handleSortChange}
                 styles={{
-                  control: (propvided) => ({
+                  control: propvided => ({
                     ...propvided,
                     backgroundColor: '#f3f3f3',
                   }),
                 }}
                 options={sortOptions}
-                theme={(theme) => ({
+                theme={theme => ({
                   ...theme,
                   borderRadius: 0,
                 })}
@@ -153,12 +161,12 @@ class Header extends React.Component {
           </FilterRowWrapper>
 
           <SummaryRowWrapper className="flex w-full py-2 items-center">
-            <div id="summary-wrapper" className="flex-grow w-4/5" style={{marginRight: '22%'}}>
-                <div id="summary-content" className="flex justify-between w-4/5 ml-auto mr-10">
-                  <SummaryIconBlock stat={numConsultantsAvailable} status="available" />
-                  <SummaryIconBlock stat={numConsultantsBusy} status="busy" />
-                  <SummaryIconBlock stat={numConsultantsUnavailable} status="unavailable" />
-                </div>
+            <div id="summary-wrapper" className="flex-grow w-4/5" style={{ marginRight: '22%' }}>
+              <div id="summary-content" className="flex justify-between w-4/5 ml-auto mr-10">
+                <SummaryIconBlock stat={numConsultantsAvailable} status="available" />
+                <SummaryIconBlock stat={numConsultantsBusy} status="busy" />
+                <SummaryIconBlock stat={numConsultantsUnavailable} status="unavailable" />
+              </div>
             </div>
           </SummaryRowWrapper>
         </ContentWrapper>
@@ -173,6 +181,6 @@ const mapStateToProps = state => ({
   numConsultantsBusy: getNumberOfConsultantsInBusyState(state),
   getSelectedFilters: makeGetFilterBy(state),
   options: getFilters(state),
-})
+});
 
 export default connect(mapStateToProps)(Header);

@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: off */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
@@ -17,8 +18,8 @@ const DataTableRowStories = storiesOf('DataTable/Row', module);
 
 // Data Table Heading
 DataTableHeadingStories
-.add('Default', () => (
-  <DataTableHeading />
+  .add('Default', () => (
+    <DataTableHeading />
   ));
 
 // Data Table Row
@@ -28,8 +29,8 @@ DataTableRowStories
   ))
   .add('Available (long status time)', () => (
     <DataTableRow
-      name='John Doe'
-      team= 'Apollo'
+      name="John Doe"
+      team="Apollo"
       sources={[
         'Inbound',
         'Internal',
@@ -45,8 +46,8 @@ DataTableRowStories
   ))
   .add('Available', () => (
     <DataTableRow
-      name='John Doe'
-      team= 'Apollo'
+      name="John Doe"
+      team="Apollo"
       sources={[
         'Inbound',
         'Internal',
@@ -61,8 +62,8 @@ DataTableRowStories
   ))
   .add('Unavailable', () => (
     <DataTableRow
-      name='Jane Smith'
-      team= 'Aphrodite'
+      name="Jane Smith"
+      team="Aphrodite"
       sources={[
         'Outbound',
         'Internal',
@@ -76,8 +77,8 @@ DataTableRowStories
   ))
   .add('Busy', () => (
     <DataTableRow
-      name='Alice Bob'
-      team= 'Achillies'
+      name="Alice Bob"
+      team="Achillies"
       sources={[
         'Internal',
       ]}
@@ -95,18 +96,18 @@ DataTableStories
     const data = [
       {
         name: 'Alice Bob',
-        team:  'Achillies',
+        team: 'Achillies',
         sources: [
           'Internal',
         ],
         functions: [
           'Sales',
         ],
-        status: "Meeting",
+        status: 'Meeting',
       },
       {
         name: 'Jane Smith',
-        team:  'Aphrodite',
+        team: 'Aphrodite',
         sources: [
           'Outbound',
           'Internal',
@@ -119,7 +120,7 @@ DataTableStories
       },
       {
         name: 'John Doe',
-        team:  'Apollo',
+        team: 'Apollo',
         sources: [
           'Inbound',
           'Internal',
@@ -133,18 +134,18 @@ DataTableStories
       },
       {
         name: 'Alice Bob',
-        team:  'Achillies',
+        team: 'Achillies',
         sources: [
           'Internal',
         ],
         functions: [
           'Sales',
         ],
-        status: "Meeting",
+        status: 'Meeting',
       },
       {
         name: 'Jane Smith',
-        team:  'Aphrodite',
+        team: 'Aphrodite',
         sources: [
           'Outbound',
           'Internal',
@@ -157,7 +158,7 @@ DataTableStories
       },
       {
         name: 'John Doe',
-        team:  'Apollo',
+        team: 'Apollo',
         sources: [
           'Inbound',
           'Internal',
@@ -168,7 +169,7 @@ DataTableStories
           'Sales',
         ],
         status: STATUS_STATE_AVAILABLE,
-      }
+      },
     ];
 
     return (
