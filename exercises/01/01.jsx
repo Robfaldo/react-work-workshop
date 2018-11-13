@@ -28,12 +28,28 @@ import React from 'react';
 //        Unavailable  =>    'fas fa-user-slash'
 //        Available    =>    'far fa-user'
 //        Busy         =>    'fas fa-user'
+
+function Icon(props){
+  const classNames = {
+    unavailable: 'fas fa-user-slash',
+    available: 'far fa-user',
+    busy: 'fas fa-user'
+  }
+
+  return (
+    <i className={classNames[props.status]}>{props.stat} {props.status.capitalize()} </i>
+  );
+}
 function StatusBlock(props) {
   return (
     <div>
-      Start HERE!
+      <Icon {...props} />
     </div>
   );
+}
+
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 export default StatusBlock;

@@ -25,10 +25,23 @@ import React from 'react';
 // ------
 // 🐨     You can COPY your solution from Exercise 02/01 as a starting point!
 class App extends React.Component {
+
+  state = {
+    team: ''
+  }
+
+  updateInput = (event) => {
+    this.setState({
+      team: event.target.value
+    });
+  }
+
+
   render() {
     return (
       <div className="w-1/4">
-        Start HERE!
+        <input type='text' value={this.state.team} onChange={this.updateInput}/>
+        {this.state.team}
       </div>
     );
   }

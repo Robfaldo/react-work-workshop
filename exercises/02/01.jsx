@@ -35,10 +35,23 @@ import React from 'react';
 // 🐨  You can initialise state and class properties using any of the valid syntax options; this project is setup
 //     to support "all" of the currently popular appraoches.
 class App extends React.Component {
+
+  state = {
+    team: ''
+  }
+
+  updateInput = (event) => {
+    this.setState({
+      team: event.target.value
+    });
+  }
+
+
   render() {
     return (
       <div className="w-1/4">
-        Start HERE!
+        <input type='text' value={this.state.team} onChange={this.updateInput}/>
+        {this.state.team}
       </div>
     );
   }

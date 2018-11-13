@@ -36,10 +36,36 @@ import PropTypes from 'prop-types';
 // 🐨  You can initialise state and class properties using any of the valid syntax options; this project is setup
 //     to support "all" of the currently popular appraoches.
 class Timer extends React.Component {
+
+  state = {
+    datetimestamp: this.props.datetimestamp
+      ? new Date(this.props.datetimestamp)
+      : new Date()
+  };
+
+  // ran out of time to find out where this was being used 
+  handleClick = (event) => {
+    this.setState({
+      team: event.target.value,
+    })
+  }
+
+  componentDidMount() {
+    this.timerId = setInterval(() => {
+      this.setState({
+        timestamp: new Date()
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
   render() {
     return (
       <div>
-        Start HERE!
+        Current time: {this.state.datetimestamp.toLocaleTimeString()}
       </div>
     );
   }

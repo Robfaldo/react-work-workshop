@@ -52,9 +52,27 @@ import DataColumn from 'scenes/components/DataTable/DataTableRow/DataRowColumn';
 // 🐨  The Row.propTypes (below) can be useful to summary the expected shape of your props
 class Row extends React.Component {
   render() {
+    const { team, functions, status, name, sources } = this.props;
+
     return (
-      <div className="flex w-full">
-        Start HERE!
+      <div className="flex w-1/4">
+        <DataColumn id="name">{name || 'Unknown Consultant'}</DataColumn>
+        <DataColumn id="team">{team || 'Unknown Team'}</DataColumn>
+        <DataColumn id="functions">
+          {
+            Array.isArray(functions) && functions.length > 0
+              ? functions.join(', ')
+              : '-'
+          }
+        </DataColumn>
+        <DataColumn id="sources">
+          {
+            Array.isArray(sources) && sources.length > 0
+              ? sources.join(', ')
+              : '-'
+          }
+        </DataColumn>
+        <DataColumn id="status">{status || 'Unknown Status'}</DataColumn>
       </div>
     );
   }
