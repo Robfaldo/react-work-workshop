@@ -15,7 +15,7 @@ Below is a summary of the exercises which have been created.
 - `01` - Conditional rendering using JSX expressions
 - `02` - Conditional rendering: towards building the data table row component
 
-### 04 - Lists & Keys,
+### 04 - Lists & Keys
 - `01` - Lists: building the Data table
 
 ### 05 - CSS-in-JSS
@@ -28,9 +28,17 @@ Below is a summary of the exercises which have been created.
 - `01` - onMouseMove
 
 ### 08 - Context API
-- `01` - Basic example
+- `01` - Active lists
 
-<!-- ### xx - Compound Components
-### xx - Action Creators & Reducers
-### xx - Selectors
-### xx - Sagas -->
+### 09 - Redux Basics
+- `01` - Action Creators + Reducers
+- `02` - Combine reducers [TODO]
+
+### 10 - React Redux + mapStateToProps
+- `01` - Basics: wiring up our demo app
+
+### 11 - Redux Selectors
+- `01` -
+
+### 12 - Redux Sagas Middleware
+- `01` -
